@@ -8,6 +8,7 @@
 </style>
 </head>
 <body>  
+<div><?php include 'include/header.php';?></div>
 
 <?php
 $userNameErr = $passErr = "";
@@ -78,5 +79,6 @@ echo "<br>";
 echo $password;
 echo "<br>";
 ?>
+<div><?php include 'resources/footer.php';?></div>
 </body>
 </html>

@@ -1,14 +1,16 @@
-<!DOCTYPE HTML>  
+<!DOCTYPE html>
 <html>
 <head>
-<style>
+	<title>Registration</title>
+	<style>
 .error {
     color: red;
-       }
-       
+}
 </style>
 </head>
-<body>  
+<body>
+<div><?php include 'include/header.php';?>
+</div>
 
 <?php
     $flag=1;
@@ -185,5 +187,7 @@ echo "<br>";
 echo $message;
 echo "<br>";
 ?>
+
+<div><?php include 'include/footer.php';?></div>
 </body>
 </html>
