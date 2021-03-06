@@ -13,7 +13,7 @@
                 $data = json_decode($current_data, true);  
                 foreach($data as $row)  
                 {  
-                    if($row["name"]==$_SESSION['uname']){
+                    if($row["name"]==$_SESSION['username']){
                         echo nl2br('Name :'.$row["name"]."\n");
                         $_SESSION['name']=$row["name"];
                         echo nl2br('Email :'.$row["email"]."\n");
