@@ -19,7 +19,7 @@
 </section>
 
 	<a href='home.php'>
-	<img src="include/logo.png"  alt="D Company" >
+	<img src="logo.png"  alt="D Company" >
 
 	<hr>
 	<hr>
