@@ -1,107 +1,150 @@
-<!DOCTYPE HTML>  
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<style>
-.error,#rnp {
-    color:red;
-    }
-
-#np{
-    color:green;
-}
-
-</style>
+   
+    <title>Document</title>
+    <link rel = "stylesheet" href = "CSS/styles.css">
 </head>
-<body>  
-    <div>
-    <?php include 'include/header.php';
-    ?>
-    </div>
+<body>
 
-<?php
-$cpassErr = $npassErr = $rtnpassErr = "";
-$cpass = $npass = $rtnpass = "";
+<header>
+  <?php
+  session_start();
+
+   include 'header\header.php';?>
+</header>
+
+<h1>Change Password</h1>
+
+
+    <?php
+$cpassErr = $npassErr = $rpassErr = "";
+$cpass = $npass = $rpass = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if (empty($_POST["cpass"])) {
-    $cpassErr = "Current Password is required";
-  } else {
-    $cpass = test_input($_POST["cpass"]);
+
+
+
+  if(empty($_POST["cpassword"]))
+  {
+    $cpassErr="Current Password is required";
+    $cpass="";
+  }
+  else
+  {
+   $cpass =$_POST["cpassword"];
   }
 
-  if (empty($_POST["npass"])) {
-    $npassErr = "Enter The New Password";
-  } else {
-    $npass = test_input($_POST["npass"]);
-    if (strlen($npass)<8) {
-      $npassErr = " Password must not be less than eight (8) characters";
-      
-    }
-    else if (!preg_match("/[@,#,$,%]/",$npass)) {
-      $npassErr = "Password must contain at least one of the special characters (@, #, $,%)";
-      
-    }
-    else if (strcmp($cpass, $npass)==0) {
-      $npassErr = "New Password should not be same as the Current Password";
-     
+  if(empty($_POST["npassword"]))
+  {
+    $npassErr="Enter The New Password";
+    $npass="";
+  }
+
+  else 
+  {
+    $npass=$_POST["npassword"];
+    if(strcmp($cpass, $npass)==0)
+    {
+      $npassErr="New Password should not be same as the Current Password";
+      $npass="";
+
     }
   }
 
-  if (empty($_POST["rtnpass"])) {
-    $rtnpassErr = "Retype The Current Password";
-  } else {
-    $rtnpass = test_input($_POST["rtnpass"]);
-    if (!strcmp($npass, $rtnpass)==0) {
-      $rtnpassErr = "New Password & Retyped Password Dosen't Match";
+  if(empty($_POST["rpassword"]))
+  {
+    $rpassErr="Retype the New Password";
+    $rpass="";
+  }
+  else
+  {
+     $rpass=$_POST["rpassword"];
+    if(!strcmp($npass, $rpass)==0)
+    {
+      $rpassErr="New Password & Retyped Password Dosen't Match";
+      $rpass="";
     
+
     }
+
   }
   
 }
 
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
+
+  ?>
+
+
+<section>
+
+      <?php 
+
+
+
+if (isset($_SESSION['username'])) {
+  echo "  
+  <nav>
+    <hr>
+    <ul>
+
+        <li><a href='dashboard.php'>Dashboard For Manager</a></li>
+        <li><a href='category.php'>Category</a></li>
+        <li><a href='products.php'>Products</a></li>
+        <li><a href='vdstatus.php'>View Delivery Status</a></li>
+        <li><a href='adccode.php'>Add Coupon Code</a></li>
+        <li><a href='viewprofile.php'>View Profile</a></li>
+        <li><a href='editprofile.php'>Edit Profile</a></li>
+        <li><a href='chngprofilepic.php'>Change Profile Picture</a></li>
+        <li><a href='changepassword.php'>Change Password</a></li>
+        <li><a href='logout.php'>Log Out</a></li>
+
+    </ul>
+  </nav>";
+
 }
-?>
+else{
+    $msg="error";
+    header("location:loginpage.php");
+    
+  }
+
+ ?>
 
 
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-  <fieldset>
-<legend><B>CHANGE PASSWORD</B></legend>  
-  Current Password: <input type="Password" name="cpass">
-  <span class="error">* <?php echo $cpassErr;?></span>
+
+  
+  <article>
+  <br>
+
+
+
+  <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+<fieldset>
+  <legend><h1>CHANGE PASSWORD</h1></legend>
+   <b> Current Password: </b><input type="password" name="cpassword" value="<?php echo $cpass;?>">
+  <span class="error">*<?php echo $cpassErr;?></span>
   <br><br>
-  <div id="np">
-         New Password: <input type="Password" name="npass">
-         <span class="error">* <?php echo $npassErr;?></span>
-        <br><br>
-  </div>
-
-  <div id="rnp">
-        Retype New Password: <input type="Password" name="rtnpass">
-        <span class="error"> *<?php echo $rtnpassErr;?></span>
-        <br><hr>
-  </div>
+  <b style="color: green;">New Password: </b><input type="password" name="npassword" value="<?php echo $npass;?>">
+  <span class="error">*<?php echo $npassErr;?></span>
+  <br><br>
+  <b style="color: red;">Retype New Password: </b><input type="password" name="rpassword" value="<?php echo $rpass;?>">
+  <span class="error">*<?php echo $rpassErr;?></span>
+  <br>
 
   <input type="submit" name="submit" value="Submit">
 </fieldset>
-</form>
- <b>You Submitted:</b>
-<?php
-echo "<br>";
-echo $cpass;
-echo "<br>";
-echo $npass;
-echo "<br>";
-echo $rtnpass;
-echo "<br>";
-?>
 
-    <div>
-    <?php include 'include/footer.php';
-    ?>
-    </div>
+
+  </article>
+</section>
+
+
+
+
+
+</body>
+</html>
+
+    
 </body>
 </html>

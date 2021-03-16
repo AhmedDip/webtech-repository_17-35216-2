@@ -1,44 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>D Company</title>
-   <style>
-     img{
-         width:20%;    
-     }
-     
-     section{
-         float:right;
-         font-family:verdana;
-         width:70%;
-         
-     }
-     
-
-
-   </style>
+    <title>Document</title>
 </head>
 <body>
-    
-     <?php 
-        session_start();
-            
-        include 'include/header.php';
-        ?>
-        <br><br>
-            <h2>Hey, This is D Company!!</h2>
-            
-            
-            <br><br>
-            <br>
-    
-        
+<header>
+<?php include 'header\header.php';?>
+</header>
 
-<div>
-     <hr>
+<section>  
+
+ 
+    <h1>WELCOME TO ABC.COM</h1>
+    <img src="image/cover.png" alt="" id=home>
    
-</div>
+  
+</section>
+
+</html>
+
+
+
+<footer>
+  <?php include 'footer\footer.php';?>
+</footer>
+
+    
 </body>
-    <?php include 'include/footer.php';
-    ?>
 </html>

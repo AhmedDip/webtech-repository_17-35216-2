@@ -1,49 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>View Profile</title>
-<link rel = "stylesheet" href = "CSS/styles.css">
+
+    <title>Document</title>
+
+    <link rel = "stylesheet" href = "CSS/styles.css">
 </head>
 <body>
 
 
-
-
-
 <header>
+  <?php 
 
-	<?php
-	session_start();
-	 include 'header\header.php';
+session_start();
+  include 'header\header.php';?>
+</header>
+<hr>
 
-     $user="Manager";
-     $salary=40000;
-	 $name="Dip";
-     $email="dipahmed@gmail.com";
-	 $gender="Male";
-     
-	 $dob="1/7/1998";
-     
-
-
-
-	 ?></header>
-
-   <h1>View Profile</h1>
-   <img src="image/cover.png" alt="">
-
-
+<h1>Change Profile Picture</h1>
+<img src="image/logo.png" alt="">
 
 <section>
-<nav>
-   <?php 
-
-
+  <?php 
 
 
 
 if (isset($_SESSION['username'])) {
-  echo "<hr>
+  echo "  
+  <nav>
+     
+    
     <ul>
 
         <li><a href='dashboard.php'>Dashboard For Manager</a></li>
@@ -58,7 +44,6 @@ if (isset($_SESSION['username'])) {
         <li><a href='logout.php'>Log Out</a></li>
 
     </ul>
-   
   </nav>";
 
 
@@ -73,38 +58,22 @@ else{
 
   
   <article>
+  <form action="uploadpp.php" method="post" enctype="multipart/form-data">
+  <fieldset>
+	<legend><b>PROFLE PICTURE</b></legend>
+	<img src="image\index.png" alt="" id="cpp" ><br>
 
-  
-
-    <?php 
-
-
-
-if (isset($_SESSION['username'])) {
-    echo " <fieldset><legend><b> View Profile </legend>
-    User: ".$user."<hr>
-    <br>Salary:".$salary."<hr>
-  <br>Name:".$name."<hr>
-  <br>Email: ".$email."<hr>
-  <br>Gender: ".$gender."<hr>
-  <br>Date Of Birth: ".$dob."<hr> 
-  
-  <br><a href='editprofile.php'>Edit Profile</a>
-  <img src='image\index.png' alt='Profile Picture' id='vp'>
-
-  </div>
-  </b>
-
-  </fieldset>";
-
-
-}
-
- ?>
-
+  <input type="file" name="fileToUpload" id="fileToUpload"><hr>
+  <input type="submit" value="Submit" name="submit">
+</fieldset>
+</form>
    
   </article>
 </section>
 
+
+</body>
+</html>
+    
 </body>
 </html>

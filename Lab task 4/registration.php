@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>  
 <html>
 <head>
-	<title>Registration</title>
-	<style>
-.error {
-    color: red;
-}
-</style>
+
+ <link rel = "stylesheet" href = "CSS/styles.css">
+
 </head>
-<body>
-<div><?php include 'include/header.php';?>
-</div>
+<body>  
+
+<?php include 'header\header.php';?>
+
+
+
 
 <?php
     $flag=1;
@@ -85,8 +85,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $flag=0;
   } else {
     $password = test_input($_POST["Password"]);
-    if (strlen($password)<8) {
-      $passErr = "Password must be 8 charecters";
+    if (strlen($password)<5) {
+      $passErr = "Password must be 5 charecters";
       $password ="";
       $flag=0;
     }
@@ -115,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
  			$current_data = file_get_contents('data.json');  
             $array_data = json_decode($current_data, true);  
             $extra = array(  
-                 'name'  =>  $_POST['name'],
+                 'name'  =>  $_POST["name"],
                  'email' =>  $_POST["email"],
                  'username'=> $_POST["username"],
                  'password' => $_POST["confirmpass"],  
@@ -126,7 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $final_data = json_encode($array_data);  
             if(file_put_contents('data.json', $final_data))  
             {  
-                 $message = "<label>Data Recorded Successfully</p>";  
+                 $message = "<p>Data Recorded Successfully</p>";  
             }  
         }  
         else  
@@ -145,25 +145,29 @@ function test_input($data) {
 }
 ?>
 
+  <br>
 
+
+      <img src="image/cover.png" alt="ABC.COM">
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-        <fieldset>
-        <legend id="reg">REGISTRATION:</legend>  
-        Name: <input type="text" name="name">
+    <span>
+    <fieldset>
+        <legend id="registration"><h3> REGISTRATION:</h3></legend>  
+        Name:    <input type="text" name="name">
         <span class="error">* <?php echo $nameErr;?></span>
-        <br><hr>
+        <br> <br>
         E-mail: <input type="text" name="email">
         <span class="error">* <?php echo $emailErr;?></span>
-        <br><hr>
+        <br><br>
         User Name: <input type="text" name="username">
         <span class="error">* <?php echo $userNameErr;?></span>
-        <br><hr>
+        <br><br>
         Password: <input type="Password" name="Password">
         <span class="error">* <?php echo $passErr;?></span>
-        <br><hr>
+        <br><br>
         Confirm Password: <input type="Password" name="confirmpass">
         <span class="error">* <?php echo $confirmpassErr;?></span>
-        <br><hr>
+        <br><br>
         <fieldset>
         <legend>Gender</legend>
         Gender:
@@ -172,14 +176,18 @@ function test_input($data) {
         <input type="radio" name="gender" value="other">Other
         <span class="error">* <?php echo $genderErr;?></span>
         </fieldset>
-       <hr>
+       <br>
   <fieldset>
         <legend>Date Of Birth</legend>
         <input type="date" name="birthday">
         <span class="error">* <?php echo $dobErr;?></span>
-        <br></fieldset><hr>
+        <br></fieldset> <br>
         <input type="submit" name="submit" value="Submit"> <input type="reset" value="Reset"> 
    </fieldset>
+
+    
+    </span>
+        
 </form>
 <?php
 echo $error;
@@ -187,7 +195,5 @@ echo "<br>";
 echo $message;
 echo "<br>";
 ?>
-
-<div><?php include 'include/footer.php';?></div>
 </body>
 </html>
