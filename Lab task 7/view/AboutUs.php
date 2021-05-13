@@ -10,7 +10,6 @@
    <h2>About Us</h2>
    
    <a href="home.php"> Go to Home</a> 
-  <div>
   
   <br>
   <h2>Our Mission</h2>
